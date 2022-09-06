@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 
 const JWT_SECRET = `${process.env.JWT_SECRET_KEY}`;
 
-//creating a user using : POST "api/auth/createUser". No login required
+// Creating a user using : POST "api/auth/createUser". No login required
 router.post(
 	'/createUser',
 	[
@@ -17,7 +17,7 @@ router.post(
 				min: 4,
 			})
 			.withMessage('Name should contain atleast 4 characters'),
-		body('email', 'Enter a valid email').isEmail(),
+		body('email').isEmail().withMessage('Enter a valid email'),
 		body('password')
 			.isLength({
 				min: 8,
@@ -66,4 +66,48 @@ router.post(
 	}
 );
 
+// Authenticating a user using : POST "api/auth/login". No login required
+router.post(
+	'/login',
+	[
+		//Validating the input from user
+		body('email').isEmail().withMessage('Enter a valid email'),
+		body('password').exists().withMessage('Password can not be blank'),
+	],
+	async (req, res) => {
+		// Returning bad request and error in case of any error
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).json({ errors: errors.array() });
+		}
+
+		const { email, password } = req.body;
+		try {
+			let user = await User.findOne({ email });
+			if (!user) {
+				return res.status(400).json({
+					error: `We couldn't find an account matching the login info you entered  `,
+				});
+			}
+			//Verifying the user password input
+			const comparePassword = await bcrypt.compare(password, user.password);
+			if (!comparePassword) {
+				return res.status(400).json({
+					error: `Incorrect password`,
+				});
+			}
+			//Sending signed Auth-Token as a response
+			const data = {
+				user: {
+					id: user.id,
+				},
+			};
+			const authToken = jwt.sign(data, JWT_SECRET);
+			res.json({ authToken });
+		} catch (error) {
+			console.error(error.message);
+			res.status(500).send('Internal server error');
+		}
+	}
+);
 module.exports = router;
