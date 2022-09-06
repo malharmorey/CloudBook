@@ -8,7 +8,6 @@ const UserSchema = new Schema({
 	},
 	email: {
 		type: String,
-		unique: true,
 		required: true,
 	},
 	password: {
@@ -21,5 +20,4 @@ const UserSchema = new Schema({
 	},
 });
 const User = mongoose.model('user', UserSchema);
-User.createIndexes();
 module.exports = User;
