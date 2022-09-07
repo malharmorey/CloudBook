@@ -63,7 +63,7 @@ router.post(
 			res.json({ authToken });
 		} catch (error) {
 			console.error(error.message);
-			res.status(500).send('Oops! some error occured');
+			res.status(500).send('Internal server error');
 		}
 	}
 );
