@@ -14,8 +14,9 @@
 
 # production
 build
+**build
 /build
-
+/client/build
 # misc
 
 .DS_Store
@@ -39,4 +40,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+.vscode
+**.vscode
 
