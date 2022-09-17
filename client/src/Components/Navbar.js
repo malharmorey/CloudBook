@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../StyleSheets/navbar.css';
 
 const Navbar = () => {
 	return (
 		<>
-			<nav className='navbar navbar-expand-lg bg-light'>
+			<nav id='navbar' className=' navbar  navbar-expand-lg '>
 				<div className='container-fluid'>
-					<Link className='navbar-brand' to='/'>
-						Navbar
+					<Link className='navbar-brand navLink' to='/'>
+						CloudBook
 					</Link>
+
 					<button
 						className='navbar-toggler'
 						type='button'
@@ -23,12 +25,12 @@ const Navbar = () => {
 					<div className='collapse navbar-collapse' id='navbarSupportedContent'>
 						<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
 							<li className='nav-item'>
-								<Link className='nav-link active' aria-current='page' to='/'>
+								<Link className='nav-link navLink' aria-current='page' to='/'>
 									Home
 								</Link>
 							</li>
 							<li className='nav-item'>
-								<Link className='nav-link' to='/about'>
+								<Link className='nav-link navLink' to='/about'>
 									About
 								</Link>
 							</li>
@@ -36,6 +38,7 @@ const Navbar = () => {
 					</div>
 				</div>
 			</nav>
+			<div className='underNavbar' style={{ height: '4rem' }}></div>
 		</>
 	);
 };

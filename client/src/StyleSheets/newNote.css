@@ -1,0 +1,26 @@
+.addNewNoteBtn {
+	position: absolute !important;
+	bottom: 2rem;
+	right: 2rem;
+	height: 4rem;
+	width: 4rem;
+	z-index: 100;
+	border-radius: 40em;
+	font-size: 2rem;
+	font-weight: 700;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	border-style: none;
+	letter-spacing: -0.24px;
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
+.modalCard {
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+}
