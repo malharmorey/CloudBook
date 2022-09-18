@@ -4,7 +4,7 @@ import noteContext from '../context/notes/NoteContext';
 
 function NoteCard(props) {
 	const context = useContext(noteContext);
-	const { deleteNote } = context;
+	const { deleteNote, editNote } = context;
 	return (
 		<div className='my-4'>
 			<div className='card m-auto'>
@@ -25,7 +25,6 @@ function NoteCard(props) {
 						className='btn btn-primary '
 						data-bs-toggle='modal'
 						data-bs-target='#updateModal'
-						id={props.id}
 					>
 						Edit
 					</button>
