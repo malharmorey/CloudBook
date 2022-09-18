@@ -10,9 +10,11 @@ function NewNote() {
 		tag: '',
 	});
 	const { addNote } = context;
+
 	const handleSaveClick = (e) => {
 		e.preventDefault();
 		addNote(note.title, note.description, note.tag);
+		setNote({ title: '', description: '', tag: '' });
 	};
 
 	const onChange = (e) => {

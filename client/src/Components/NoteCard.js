@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
+import noteContext from '../context/notes/NoteContext';
 
 function NoteCard(props) {
+	const context = useContext(noteContext);
+	const { deleteNote } = context;
 	return (
 		<div className='my-4'>
 			<div className='card m-auto'>
@@ -26,7 +29,13 @@ function NoteCard(props) {
 					>
 						Edit
 					</button>
-					<button type='button' className='btn btn-danger mx-2' id={props.id}>
+					<button
+						type='button'
+						className='btn btn-danger mx-2'
+						onClick={() => {
+							deleteNote(props.id);
+						}}
+					>
 						Delete
 					</button>
 
@@ -64,7 +73,6 @@ function NoteCard(props) {
 												type='text'
 												className='form-control'
 												id='recipient-name'
-												value={props.title}
 											/>
 										</div>
 										<div className='mb-3'>
@@ -75,11 +83,7 @@ function NoteCard(props) {
 												className='form-control'
 												id='message-text'
 												rows='6'
-												// value={text}
-												// onChange={handleOnChange}
-											>
-												{props.description}
-											</textarea>
+											></textarea>
 										</div>
 										<div className='mb-3'>
 											<label

@@ -22,6 +22,7 @@ function Notes() {
 								}
 								tag={note.tag}
 								date={note.date}
+								id={note._id}
 							/>
 						</div>
 					);
