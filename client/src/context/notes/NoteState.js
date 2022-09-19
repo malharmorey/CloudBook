@@ -23,7 +23,7 @@ const NoteState = (props) => {
 	// ADD note
 	const addNote = async (title, description, tag) => {
 		// API call to server
-		const response = await fetch(`${host}/api/notes/addnote`, {
+		await fetch(`${host}/api/notes/addnote`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const NoteState = (props) => {
 			body: JSON.stringify({ title, description, tag }),
 		});
 
-		// Client-side logic
+		// Client-side logic to add a note
 		const note = {
 			_id: '73318737b8d8f8fac6b09d371b5',
 			user: '63181ededd43c54ab85dc623',
@@ -46,20 +46,30 @@ const NoteState = (props) => {
 		setNotes(notes.concat(note));
 	};
 
-	//Delete note
-	const deleteNote = (id) => {
-		// TODO: API call
-		const newNotes = notes.filter((note) => {
+	// DELETE note
+	const deleteNote = async (id) => {
+		// API call to server
+		await fetch(`${host}/api/notes/deletenote/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'auth-token':
+					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
+			},
+		});
+
+		// Client-side logic to delete a note
+		let newNotesArray = notes.filter((note) => {
 			return note._id !== id;
 		});
-		setNotes(newNotes);
+		setNotes(newNotesArray);
 	};
 
-	//Edit note
+	// EDIT note
 	const editNote = async (id, title, description, tag) => {
 		// API call to server
-		const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
-			method: 'POST',
+		await fetch(`${host}/api/notes/updatenote/${id}`, {
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				'auth-token':
@@ -67,17 +77,19 @@ const NoteState = (props) => {
 			},
 			body: JSON.stringify({ title, description, tag }),
 		});
-		const json = response.json();
 
-		// Client-side logic for edti note
-		for (let index = 0; index < notes.length; index++) {
-			const element = notes[index];
+		// Client-side logic to edit a note
+		let newNotes = JSON.parse(JSON.stringify(notes));
+		for (let index = 0; index < newNotes.length; index++) {
+			const element = newNotes[index];
 			if (element._id === id) {
-				element.title = title;
-				element.description = description;
-				element.tag = tag;
+				newNotes[index].title = title;
+				newNotes[index].description = description;
+				newNotes[index].tag = tag;
+				break;
 			}
 		}
+		setNotes(newNotes);
 	};
 
 	return (

@@ -4,15 +4,15 @@ import noteContext from '../context/notes/NoteContext';
 
 function NewNote() {
 	const context = useContext(noteContext);
+	const { addNote } = context;
 	const [note, setNote] = useState({
 		title: '',
 		description: '',
 		tag: '',
 	});
-	const { addNote } = context;
 
 	const handleSaveClick = (e) => {
-		e.preventDefault();
+		// No need to use e.preventDefault(); Since save btn is not the part of form element
 		addNote(note.title, note.description, note.tag);
 		setNote({ title: '', description: '', tag: '' });
 	};
@@ -31,7 +31,7 @@ function NewNote() {
 				&#43;
 			</button>
 
-			{/* ///////--------------MODAL------------////// */}
+			{/* ///////--------------NEW-NOTE-MODAL------------////// */}
 			<div
 				className='modal fade'
 				id='newModal'
