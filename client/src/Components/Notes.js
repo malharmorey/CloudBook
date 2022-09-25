@@ -29,7 +29,7 @@ function Notes() {
 		});
 	};
 
-	const handleClick = (e) => {
+	const handleSaveClick = () => {
 		editNote(note.id, note.etitle, note.edescription, note.etag);
 	};
 
@@ -126,7 +126,7 @@ function Notes() {
 								type='button'
 								className='btn btn-success'
 								data-bs-dismiss='modal'
-								onClick={handleClick}
+								onClick={handleSaveClick}
 							>
 								Save
 							</button>
@@ -137,12 +137,12 @@ function Notes() {
 			<div className='row'>
 				{notes.map((note) => {
 					return (
-						<div className='col-md-4' key={note._id}>
+						<div className='col-md-6' key={note._id}>
 							<NoteCard
 								title={note.title ? note.title : 'No title available'}
 								description={
 									note.description
-										? note.description.slice(0, 100)
+										? note.description
 										: 'No description available'
 								}
 								tag={note.tag}

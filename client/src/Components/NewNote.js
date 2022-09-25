@@ -12,7 +12,6 @@ function NewNote() {
 	});
 
 	const handleSaveClick = (e) => {
-		// No need to use e.preventDefault(); Since save btn is not the part of form element
 		addNote(note.title, note.description, note.tag);
 		setNote({ title: '', description: '', tag: '' });
 	};

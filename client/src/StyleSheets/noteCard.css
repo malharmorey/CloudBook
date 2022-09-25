@@ -1,0 +1,25 @@
+@import url(../StyleSheets/App.css);
+#divCard {
+	width: 90%;
+	min-height: 100%;
+	border-radius: 1.2rem;
+	overflow: hidden;
+	background: rgba(235, 235, 235, 0.25);
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(4.1px);
+	-webkit-backdrop-filter: blur(4.1px);
+}
+h4 {
+	font-family: 'Kalam', cursive;
+	font-size: 1.8rem;
+	font-weight: 700;
+}
+.cardNote {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	font-size: 1.1rem;
+}
+.cardTag {
+	font-family: 'Kalam', cursive;
+	font-weight: 400;
+}
