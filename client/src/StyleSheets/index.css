@@ -6,8 +6,10 @@ body::before {
 	bottom: 0px;
 	left: 0px;
 	z-index: -1;
-	background: url(../../images/bg4.jpg);
+	background: url(../../images/1.jpg);
+	filter: invert(94%);
 	background-position-y: center;
+	background-position-x: center;
 	background-size: cover;
 }
 body {

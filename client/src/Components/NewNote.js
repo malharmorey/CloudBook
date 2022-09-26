@@ -63,6 +63,7 @@ function NewNote() {
 										className='form-control'
 										id='title'
 										onChange={onChange}
+										value={note.title}
 									/>
 								</div>
 								<div className='mb-3'>
@@ -75,6 +76,7 @@ function NewNote() {
 										name='description'
 										rows='6'
 										onChange={onChange}
+										defaultValue={note.description}
 									></textarea>
 								</div>
 								<div className='mb-3'>
@@ -87,6 +89,7 @@ function NewNote() {
 										id='tag'
 										name='tag'
 										onChange={onChange}
+										value={note.tag}
 									/>
 								</div>
 							</form>
