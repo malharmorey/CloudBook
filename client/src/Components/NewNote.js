@@ -64,6 +64,8 @@ function NewNote() {
 										id='title'
 										onChange={onChange}
 										value={note.title}
+										minLength={3}
+										required
 									/>
 								</div>
 								<div className='mb-3'>
@@ -76,7 +78,9 @@ function NewNote() {
 										name='description'
 										rows='6'
 										onChange={onChange}
-										defaultValue={note.description}
+										value={note.description}
+										minLength={5}
+										required
 									></textarea>
 								</div>
 								<div className='mb-3'>
@@ -97,15 +101,16 @@ function NewNote() {
 						<div className='modal-footer'>
 							<button
 								type='button'
-								className='btn btn-secondary'
+								className='btn btn-secondary bg-secondary bg-gradient'
 								data-bs-dismiss='modal'
 							>
 								Close
 							</button>
 							<button
 								type='button'
-								className='btn btn-primary'
+								className='btn btn-primary bg-primary bg-gradient'
 								data-bs-dismiss='modal'
+								disabled={note.title.length < 3 || note.description.length < 5}
 								onClick={handleSaveClick}
 							>
 								Save

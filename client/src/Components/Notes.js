@@ -84,6 +84,8 @@ function Notes() {
 										id='etitle'
 										onChange={onChange}
 										value={note.etitle}
+										minLength={3}
+										required
 									/>
 								</div>
 								<div className='mb-3'>
@@ -97,6 +99,8 @@ function Notes() {
 										rows='6'
 										onChange={onChange}
 										value={note.edescription}
+										minLength={5}
+										required
 									></textarea>
 								</div>
 								<div className='mb-3'>
@@ -117,15 +121,18 @@ function Notes() {
 						<div className='modal-footer'>
 							<button
 								type='button'
-								className='btn btn-secondary'
+								className='btn btn-secondary bg-secondary bg-gradient'
 								data-bs-dismiss='modal'
 							>
 								Close
 							</button>
 							<button
 								type='button'
-								className='btn btn-success'
+								className='btn btn-success bg-success bg-gradient'
 								data-bs-dismiss='modal'
+								disabled={
+									note.etitle.length < 3 || note.edescription.length < 5
+								}
 								onClick={handleSaveClick}
 							>
 								Save
@@ -134,7 +141,11 @@ function Notes() {
 					</div>
 				</div>
 			</div>
+
 			<div className='row'>
+				{notes.length === 0 && (
+					<NoteCard title={'Nothing in Here, but you and me'} date={''} />
+				)}
 				{notes.map((note) => {
 					return (
 						<div className='col-md-6' key={note._id}>

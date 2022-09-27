@@ -16,14 +16,14 @@ const NoteState = (props) => {
 					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
 			},
 		});
-		const json = await response.json();
-		setNotes(json);
+		const fetchedNotes = await response.json();
+		setNotes(fetchedNotes);
 	};
 
 	// ADD note
 	const addNote = async (title, description, tag) => {
 		// API call to server
-		await fetch(`${host}/api/notes/addnote`, {
+		const response = await fetch(`${host}/api/notes/addnote`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -34,16 +34,9 @@ const NoteState = (props) => {
 		});
 
 		// Client-side logic to add a note
-		const note = {
-			_id: '73318737b8d8f8fac6b09d371b5',
-			user: '63181ededd43c54ab85dc623',
-			title: title,
-			description: description,
-			tag: tag,
-			date: '2022-08-07T11:33:31.426Z',
-			__v: 0,
-		};
-		setNotes(notes.concat(note));
+		const addedNote = await response.json();
+		console.log(addedNote);
+		setNotes(notes.concat(addedNote));
 	};
 
 	// DELETE note

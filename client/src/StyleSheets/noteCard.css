@@ -1,6 +1,5 @@
 @import url(../StyleSheets/App.css);
 #divCard {
-	width: 90%;
 	min-height: 100%;
 	border-radius: 1.2rem;
 	overflow: hidden;
@@ -11,7 +10,6 @@
 
 	backdrop-filter: blur(7px) saturate(191%);
 	-webkit-backdrop-filter: blur(7px) saturate(191%);
-	/* background-color: rgba(28, 38, 58, 0.56); */
 	background-color: rgba(43, 52, 76, 0.56);
 	border: 1px solid rgba(255, 255, 255, 0.125);
 }
@@ -26,6 +24,17 @@ h4 {
 	font-size: 1.1rem;
 }
 .cardTag {
+	font-size: 1.1rem;
+}
+img {
+	height: 21rem;
+	width: 27rem;
+}
+.cardTag {
 	font-family: 'Kalam', cursive;
 	font-weight: 400;
+}
+small {
+	font-weight: bolder;
+	color: rgb(217, 216, 216);
 }
