@@ -1,0 +1,61 @@
+@import url(../StyleSheets/App.css);
+.loginContainer {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+}
+.loginCard {
+	position: relative;
+	height: 60%;
+	width: 40%;
+	border-radius: 1.2rem;
+	overflow: hidden;
+	backdrop-filter: blur(7px) saturate(191%);
+	-webkit-backdrop-filter: blur(7px) saturate(191%);
+	background-color: rgba(43, 52, 76, 0.56);
+}
+.loginCardHeader > p {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	font-size: 2rem;
+	text-align: center;
+	margin: 2rem 4rem 0.5rem 4rem;
+}
+.loginCardBody {
+	margin: 0.5rem 2rem 2rem 2rem !important;
+	border: none;
+}
+.inputField {
+	border: none;
+	backdrop-filter: blur(7px) saturate(191%);
+	-webkit-backdrop-filter: blur(7px) saturate(191%);
+	background-color: rgba(255, 255, 255, 0.07);
+	color: white !important;
+	outline: none !important;
+}
+.inputField:focus {
+	border: none;
+	backdrop-filter: blur(7px) saturate(191%);
+	-webkit-backdrop-filter: blur(7px) saturate(191%);
+	background-color: rgba(255, 255, 255, 0.07);
+	outline: none !important;
+}
+.signupLink {
+	text-decoration: none !important;
+}
+.loginPageBtn {
+	background-color: white;
+	color: black;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	font-size: 1.15rem;
+	border: none;
+	transition: 00ms all ease;
+}
+.loginPageBtn:hover {
+	background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
+	background: linear-gradient(to right, #3c1053, #ad5389);
+	color: white;
+}

@@ -2,7 +2,11 @@ import React from 'react';
 // import NoteContext from '../context/notes/NoteContext';
 
 const About = () => {
-	return <div>This is About</div>;
+	return (
+		<>
+			<h2>This is about</h2>
+		</>
+	);
 };
 
 export default About;

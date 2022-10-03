@@ -7,7 +7,7 @@ const Navbar = () => {
 		<>
 			<nav id='navbar' className=' navbar  navbar-expand-lg '>
 				<div className='container-fluid'>
-					<Link className='navbar-brand navLink' to='/'>
+					<Link className='navbar-brand  navTitle' to='/'>
 						CloudBook
 					</Link>
 
@@ -35,6 +35,10 @@ const Navbar = () => {
 								</Link>
 							</li>
 						</ul>
+						<i className='fa-solid fa-right-to-bracket s'></i>
+						<Link className='me-4 loginBtn' to='/login'>
+							Login
+						</Link>
 					</div>
 				</div>
 			</nav>

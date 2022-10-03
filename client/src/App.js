@@ -5,6 +5,8 @@ import Navbar from './Components/Navbar';
 import Home from './Components/Home';
 import About from './Components/About';
 import NoteState from './context/notes/NoteState';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
 
 function App() {
 	return (
@@ -12,10 +14,15 @@ function App() {
 			<NoteState>
 				<Router>
 					<Navbar />
-					<div className='container' style={{ marginTop: '1rem' }}>
+					<div
+						className='container p-0'
+						style={{ marginTop: '1rem', width: '90%' }}
+					>
 						<Routes>
 							<Route exact path='/' element={<Home />} />
 							<Route exact path='/about' element={<About />} />
+							<Route exact path='/login' element={<Login />} />
+							<Route exact path='/signup' element={<SignUp />} />
 						</Routes>
 					</div>
 				</Router>

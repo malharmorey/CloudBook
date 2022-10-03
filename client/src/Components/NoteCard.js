@@ -10,10 +10,12 @@ function NoteCard(props) {
 	return (
 		<div className='my-4'>
 			<div
-				className={`card m-auto`}
+				className='card m-auto '
 				id='divCard'
 				style={
-					moment(props.date).isValid() ? { width: '95%' } : { width: '42%' }
+					moment(props.date).isValid()
+						? { width: '95%' }
+						: { maxWidth: 'fit-content' }
 				}
 			>
 				<div className='card-body cardBody'>

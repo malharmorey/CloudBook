@@ -1,3 +1,4 @@
+@import url(../StyleSheets/App.css);
 body::before {
 	content: '';
 	position: fixed;

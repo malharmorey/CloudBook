@@ -148,7 +148,7 @@ function Notes() {
 				)}
 				{notes.map((note) => {
 					return (
-						<div className='col-md-6' key={note._id}>
+						<div className='col-md-6 p-0' key={note._id}>
 							<NoteCard
 								title={note.title ? note.title : 'No title available'}
 								description={
