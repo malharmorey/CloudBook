@@ -20,14 +20,20 @@ const Login = () => {
 			}),
 		});
 		const json = await response.json();
-		console.log(json);
 		if (json.success) {
-			//redirect
 			localStorage.setItem('token', json.authToken);
 			navigate('/');
 		} else {
-			alert(`${json.error}`);
+			alert(
+				json.error === undefined
+					? 'You have entered wrong credentials '
+					: `${json.error}`
+			);
 		}
+		setCredentials({
+			email: '',
+			password: '',
+		});
 	};
 
 	const onChange = (e) => {

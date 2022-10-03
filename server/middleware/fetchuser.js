@@ -4,23 +4,30 @@ const JWT_SECRET = `${process.env.JWT_SECRET_KEY}`;
 
 // Fetching userId from auth-token send by user
 const fetchuser = (req, res, next) => {
+	let success = false;
 	const token = req.header('auth-token');
 	if (!token) {
-		return res.status(401).send({ errors: 'Invalid Token' });
+		success = false;
+		return res.status(401).send({ success, errors: 'Invalid Token' });
 	}
 
 	try {
 		// Authenticating auth-token and fetching userId from it
 		jwt.verify(token, JWT_SECRET, (err, userData) => {
-			if (err)
+			if (err) {
+				success = false;
 				return res.status(401).send({
+					success,
 					errors: 'User is not authenticated to perform this task',
 				});
-			req.user = userData.user;
-			next();
+			} else {
+				req.user = userData.user;
+				next();
+			}
 		});
 	} catch (error) {
-		res.status(403).send({ errors: 'Invalid user' });
+		success = false;
+		res.status(403).send({ success, errors: 'Invalid user' });
 	}
 };
 
