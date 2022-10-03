@@ -30,8 +30,9 @@ router.post(
 			.withMessage('Title should contain atleast 3 characters'),
 		body('description')
 			.exists({ checkFalsy: true })
-			.withMessage('Description can not be blank'),
-		// TODO: eliminate null string
+			.withMessage('Description can not be blank')
+			.isLength({ min: 5 })
+			.withMessage('Description must contain atleast 5 characters'),
 	],
 	async (req, res) => {
 		const { title, description, tag } = req.body;
@@ -72,8 +73,9 @@ router.put(
 			.withMessage('Title should contain atleast 3 characters'),
 		body('description')
 			.exists({ checkFalsy: true })
-			.withMessage('Description can not be blank'),
-		// TODO: eliminate null string
+			.withMessage('Description can not be blank')
+			.isLength({ min: 5 })
+			.withMessage('Description must contain atleast 5 characters'),
 	],
 	async (req, res) => {
 		const { title, description, tag } = req.body;

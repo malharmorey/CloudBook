@@ -79,6 +79,7 @@ router.post(
 	],
 	async (req, res) => {
 		// Returning bad request and error in case of any error
+		let success = false;
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
@@ -88,14 +89,18 @@ router.post(
 		try {
 			let user = await User.findOne({ email });
 			if (!user) {
+				success = false;
 				return res.status(400).json({
+					success,
 					error: `We couldn't find an account matching the login info you entered  `,
 				});
 			}
 			//Verifying the user password input
 			const comparePassword = await bcrypt.compare(password, user.password);
 			if (!comparePassword) {
+				success = false;
 				return res.status(400).json({
+					success,
 					error: `Incorrect password`,
 				});
 			}
