@@ -3,7 +3,7 @@ import '../StyleSheets/login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
 	const [credentials, setCredentials] = useState({ email: '', password: '' });
 	let navigate = useNavigate();
 
@@ -23,12 +23,14 @@ const Login = () => {
 		if (json.success) {
 			localStorage.setItem('token', json.authToken);
 			navigate('/');
+			props.showAlert('Successfully loged In', 'success');
 		} else {
-			alert(
-				json.error === undefined
-					? 'You have entered wrong credentials '
-					: `${json.error}`
-			);
+			// alert(
+			if (json.message === undefined) {
+				props.showAlert('You have entered wrong credentials', 'warning');
+			} else {
+				props.showAlert(`${json.message}`, 'danger');
+			}
 		}
 		setCredentials({
 			email: '',

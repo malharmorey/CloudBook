@@ -42,7 +42,7 @@ const Navbar = () => {
 					</div>
 				</div>
 			</nav>
-			<div className='underNavbar' style={{ height: '4rem' }}></div>
+			<div className='underNavbar' style={{ height: '3.6rem' }}></div>
 		</>
 	);
 };

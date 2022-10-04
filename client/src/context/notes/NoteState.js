@@ -17,7 +17,7 @@ const NoteState = (props) => {
 			},
 		});
 		const fetchedNotes = await response.json();
-		setNotes(fetchedNotes);
+		setNotes(fetchedNotes.notes);
 	};
 
 	// ADD note
@@ -35,33 +35,13 @@ const NoteState = (props) => {
 
 		// Client-side logic to add a note
 		const addedNote = await response.json();
-		console.log(addedNote);
-		setNotes(notes.concat(addedNote));
-	};
-
-	// DELETE note
-	const deleteNote = async (id) => {
-		// API call to server
-		await fetch(`${host}/api/notes/deletenote/${id}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				'auth-token':
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
-			},
-		});
-
-		// Client-side logic to delete a note
-		let newNotesArray = notes.filter((note) => {
-			return note._id !== id;
-		});
-		setNotes(newNotesArray);
+		setNotes(notes.concat(addedNote.note));
 	};
 
 	// EDIT note
 	const editNote = async (id, title, description, tag) => {
 		// API call to server
-		await fetch(`${host}/api/notes/updatenote/${id}`, {
+		const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -70,6 +50,8 @@ const NoteState = (props) => {
 			},
 			body: JSON.stringify({ title, description, tag }),
 		});
+		// eslint-disable-next-line
+		const serverResponse = await response.json();
 
 		// Client-side logic to edit a note
 		let newNotes = JSON.parse(JSON.stringify(notes));
@@ -83,6 +65,28 @@ const NoteState = (props) => {
 			}
 		}
 		setNotes(newNotes);
+	};
+
+	// DELETE note
+	const deleteNote = async (id) => {
+		// API call to server
+		const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'auth-token':
+					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
+			},
+		});
+
+		// eslint-disable-next-line
+		const serverResponse = await response.json();
+
+		// Client-side logic to delete a note
+		let newNotesArray = notes.filter((note) => {
+			return note._id !== id;
+		});
+		setNotes(newNotesArray);
 	};
 
 	return (

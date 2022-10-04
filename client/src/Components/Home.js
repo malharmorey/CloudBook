@@ -2,11 +2,11 @@ import React from 'react';
 import '../StyleSheets/home.css';
 import Notes from './Notes';
 
-const Home = () => {
+const Home = (props) => {
 	return (
 		<>
 			<h2>Your Notes</h2>
-			<Notes />
+			<Notes showAlert={props.showAlert} />
 		</>
 	);
 };

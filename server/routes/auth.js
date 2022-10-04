@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 const fetchuser = require('../middleware/fetchuser');
 
 const JWT_SECRET = `${process.env.JWT_SECRET_KEY}`;
-
+var success;
 //---------------------------------ROUTE 1---------------------------------
 // Creating a user using : POST "api/auth/createUser". No login required
 router.post(
@@ -32,7 +32,7 @@ router.post(
 	],
 	async (req, res) => {
 		// Returning bad request and error in case of any error
-		let success = false;
+
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			success = false;
@@ -45,7 +45,7 @@ router.post(
 				success = false;
 				return res.status(400).json({
 					success,
-					error: 'Email already in use, Please use different Email',
+					message: 'Email already in use, Please use different Email',
 				});
 			}
 			//Hashing the new user password before storing it to our DB
@@ -65,10 +65,10 @@ router.post(
 			};
 			const authToken = jwt.sign(data, JWT_SECRET);
 			success = true;
-			res.json({ success, authToken });
+			res.json({ success, authToken, message: 'User added successfully' });
 		} catch (error) {
 			success = false;
-			res.status(500).json({ success, error: 'Internal server error' });
+			res.status(500).json({ success, message: 'Internal server error' });
 		}
 	}
 );
@@ -84,7 +84,6 @@ router.post(
 	],
 	async (req, res) => {
 		// Returning bad request and error in case of any error
-		let success = false;
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
 			success = false;
@@ -98,7 +97,7 @@ router.post(
 				success = false;
 				return res.status(400).json({
 					success,
-					error: `We couldn't find an account matching the login info you entered  `,
+					message: `We couldn't find an account matching the login info you entered  `,
 				});
 			}
 			//Verifying the user password input
@@ -107,7 +106,7 @@ router.post(
 				success = false;
 				return res.status(400).json({
 					success,
-					error: `Incorrect password`,
+					message: `Incorrect password`,
 				});
 			}
 			//Sending signed Auth-Token as a response
@@ -121,7 +120,7 @@ router.post(
 			res.json({ success, authToken });
 		} catch (error) {
 			success = false;
-			res.status(500).json({ success, error: 'Internal server error' });
+			res.status(500).json({ success, message: 'Internal server error' });
 		}
 	}
 );
@@ -134,8 +133,8 @@ router.post('/getuser', fetchuser, async (req, res) => {
 		const user = await User.findById(userId).select('-password');
 		res.send(user);
 	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Internal server error');
+		success = false;
+		res.status(500).json({ success, message: 'Internal server error' });
 	}
 });
 module.exports = router;

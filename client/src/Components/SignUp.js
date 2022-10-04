@@ -3,7 +3,7 @@ import '../StyleSheets/signup.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = (props) => {
 	const [credentials, setCredentials] = useState({
 		name: '',
 		email: '',
@@ -28,12 +28,17 @@ const SignUp = () => {
 		if (json.success) {
 			localStorage.setItem('token', json.authToken);
 			navigate('/');
+			props.showAlert('Account created sccessfully!', 'success');
 		} else {
-			alert(
-				json.error === undefined
-					? 'Password must contain atleast 1 lowerCase, 1 upperCase, 1 number and 1 symbol '
-					: `${json.error}`
-			);
+			// alert(
+			if (json.message === undefined) {
+				props.showAlert(
+					'Password must contain atleast 1 lowerCase, 1 upperCase, 1 number and 1 symbol',
+					'warning'
+				);
+			} else {
+				props.showAlert(`${json.message}`, 'danger');
+			}
 		}
 		setCredentials({
 			name: '',

@@ -4,15 +4,17 @@ const Note = require('../models/Note');
 const fetchuser = require('../middleware/fetchuser');
 const { body, validationResult } = require('express-validator');
 
+var success;
 //---------------------------------ROUTE 1---------------------------------
 // fetching all notes of a user : get "api/notes/getallnotes".Login required
 router.get('/getallnotes', fetchuser, async (req, res) => {
 	try {
 		const notes = await Note.find({ user: req.user.id });
-		res.json(notes);
+		success = true;
+		res.json({ success, notes: notes });
 	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Internal server error');
+		success = false;
+		res.status(500).json({ success, message: 'Internal server error' });
 	}
 });
 
@@ -35,12 +37,14 @@ router.post(
 			.withMessage('Description must contain atleast 5 characters'),
 	],
 	async (req, res) => {
+		// let success = false;
 		const { title, description, tag } = req.body;
 		try {
 			// Returning bad request and error in case of any error
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
-				return res.status(400).json({ errors: errors.array() });
+				success = false;
+				return res.status(400).json({ success, message: errors.array() });
 			}
 
 			// Creating a new note
@@ -51,10 +55,15 @@ router.post(
 				user: req.user.id,
 			});
 			await note.save();
-			res.json(note);
+			success = true;
+			res.json({
+				success,
+				note: note,
+				message: 'Your note has been added successfully',
+			});
 		} catch (error) {
-			console.error(error.message);
-			res.status(500).send('Internal server error');
+			success = false;
+			res.status(500).json({ success, message: 'Internal server error' });
 		}
 	}
 );
@@ -95,11 +104,13 @@ router.put(
 			// Finding the note to be updated
 			let note = await Note.findById(req.params.id);
 			if (!note) {
-				return res.status(404).send('Note not found');
+				success = false;
+				return res.status(404).json({ success, message: 'Note not found' });
 			}
 			// Allowing updation only if the user is authorized
 			if (note.user.toString() !== req.user.id) {
-				return res.status(401).send('Unauthorized user');
+				success = false;
+				return res.status(401).json({ success, message: 'Unauthorized user' });
 			}
 
 			// Updating note
@@ -108,10 +119,14 @@ router.put(
 				{ $set: newNote },
 				{ new: true }
 			);
-			res.json({ note });
+			success = true;
+			res.json({
+				success,
+				message: ' Your note has been updated successfully',
+			});
 		} catch (error) {
-			console.error(error.message);
-			res.status(500).send('Internal server error');
+			success = false;
+			res.status(500).json({ success, message: 'Internal server error' });
 		}
 	}
 );
@@ -123,20 +138,23 @@ router.delete('/deletenote/:id', fetchuser, async (req, res) => {
 		// Finding the note to be deleted
 		let note = await Note.findById(req.params.id);
 		if (!note) {
-			return res.status(404).send('Note not found');
+			success = false;
+			return res.status(404).json({ success, message: 'Note not found' });
 		}
 
 		// Allowing deletion only if the user is authorized
 		if (note.user.toString() !== req.user.id) {
-			return res.status(401).send('Unauthorized user');
+			success = false;
+			return res.status(401).json({ success, message: 'Unauthorized user' });
 		}
 
 		// Updating note
 		note = await Note.findByIdAndDelete(req.params.id);
-		res.json({ Success: 'Note has been deleted', note: note });
+		success = true;
+		res.json({ success, message: 'Your note has been deleted successfully' });
 	} catch (error) {
-		console.error(error.message);
-		res.status(500).send('Internal server error');
+		success = false;
+		res.status(500).json({ success, message: 'Internal server error' });
 	}
 });
 module.exports = router;
