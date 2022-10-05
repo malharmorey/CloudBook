@@ -36,6 +36,16 @@ const NoteState = (props) => {
 		// Client-side logic to add a note
 		const addedNote = await response.json();
 		setNotes(notes.concat(addedNote.note));
+		// Alerts
+		if (addedNote.success) {
+			props.showAlert(`${addedNote.message}`, 'success');
+		} else {
+			if (addedNote.message === undefined) {
+				props.showAlert(`Oops unable to add your note`, 'danger');
+			} else {
+				props.showAlert(`${addedNote.message}`, 'danger');
+			}
+		}
 	};
 
 	// EDIT note
@@ -52,6 +62,16 @@ const NoteState = (props) => {
 		});
 		// eslint-disable-next-line
 		const serverResponse = await response.json();
+		// Alerts
+		if (serverResponse.success) {
+			props.showAlert(`${serverResponse.message}`, 'success');
+		} else {
+			if (serverResponse.message === undefined) {
+				props.showAlert(`Oops unable to update your note`, 'danger');
+			} else {
+				props.showAlert(`${serverResponse.message}`, 'danger');
+			}
+		}
 
 		// Client-side logic to edit a note
 		let newNotes = JSON.parse(JSON.stringify(notes));
@@ -81,6 +101,16 @@ const NoteState = (props) => {
 
 		// eslint-disable-next-line
 		const serverResponse = await response.json();
+		// Alerts
+		if (serverResponse.success) {
+			props.showAlert(`${serverResponse.message}`, 'success');
+		} else {
+			if (serverResponse.message === undefined) {
+				props.showAlert(`Oops unable to delete your note`, 'danger');
+			} else {
+				props.showAlert(`${serverResponse.message}`, 'danger');
+			}
+		}
 
 		// Client-side logic to delete a note
 		let newNotesArray = notes.filter((note) => {

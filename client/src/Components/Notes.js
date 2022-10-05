@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import noteContext from '../context/notes/NoteContext';
 import NoteCard from './NoteCard';
-import NewNote from './NewNote';
 
 function Notes() {
 	const context = useContext(noteContext);
@@ -39,8 +38,6 @@ function Notes() {
 
 	return (
 		<>
-			<NewNote />
-
 			<button
 				type='button'
 				className='btn btn-primary d-none '

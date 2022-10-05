@@ -44,7 +44,7 @@ router.post(
 			const errors = validationResult(req);
 			if (!errors.isEmpty()) {
 				success = false;
-				return res.status(400).json({ success, message: errors.array() });
+				return res.status(400).json({ success, errors: errors.array() });
 			}
 
 			// Creating a new note
@@ -88,6 +88,12 @@ router.put(
 	],
 	async (req, res) => {
 		const { title, description, tag } = req.body;
+		// Returning bad request and error in case of any error
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			success = false;
+			return res.status(400).json({ success, errors: errors.array() });
+		}
 		try {
 			// Creating a new note object
 			const newNote = {};

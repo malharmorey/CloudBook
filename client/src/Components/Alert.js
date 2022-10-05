@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function Alert(props) {
+function Alert(props) {
 	return (
 		<div
 			style={{
-				position: `absolute`,
+				position: `fixed`,
 				left: '0',
 				right: '0',
 				marginLeft: 'auto',
@@ -32,3 +32,5 @@ export default function Alert(props) {
 		</div>
 	);
 }
+
+export default Alert;

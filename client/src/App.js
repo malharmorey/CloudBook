@@ -24,7 +24,7 @@ function App() {
 	};
 	return (
 		<>
-			<NoteState>
+			<NoteState showAlert={showAlert}>
 				<Router>
 					<Navbar />
 					<Alert alert={alert} />
@@ -33,7 +33,7 @@ function App() {
 						style={{ marginTop: '1rem', width: '90%' }}
 					>
 						<Routes>
-							<Route exact path='/' element={<Home showAlert={showAlert} />} />
+							<Route exact path='/' element={<Home />} />
 							<Route exact path='/about' element={<About />} />
 							<Route
 								exact
