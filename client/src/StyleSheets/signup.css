@@ -8,3 +8,24 @@
 	-webkit-backdrop-filter: blur(7px) saturate(191%);
 	background-color: rgba(43, 52, 76, 0.56);
 }
+/* Media queries */
+@media (max-width: 1000px) {
+	.signUpCard {
+		width: 60%;
+	}
+}
+@media (max-width: 700px) {
+	.signUpCard {
+		width: 70%;
+	}
+}
+@media (max-width: 550px) {
+	.signUpCard {
+		width: 80%;
+	}
+}
+@media (max-width: 500px) {
+	.signUpCard {
+		width: 100%;
+	}
+}

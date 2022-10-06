@@ -28,10 +28,7 @@ function App() {
 				<Router>
 					<Navbar />
 					<Alert alert={alert} />
-					<div
-						className='container p-0'
-						style={{ marginTop: '1rem', width: '90%' }}
-					>
+					<div className='mainContainer'>
 						<Routes>
 							<Route exact path='/' element={<Home />} />
 							<Route exact path='/about' element={<About />} />

@@ -4,7 +4,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 90vh;
+	height: inherit;
+	width: inherit;
+	margin-top: auto;
 }
 .loginCard {
 	position: relative;
@@ -34,6 +36,7 @@
 	background-color: rgba(255, 255, 255, 0.07);
 	color: white !important;
 	outline: none !important;
+	font-size: 1.05rem;
 }
 .inputField:focus {
 	border: none;
@@ -53,9 +56,32 @@
 	font-size: 1.15rem;
 	border: none;
 	transition: 00ms all ease;
+	margin-bottom: 2rem;
 }
 .loginPageBtn:hover {
 	background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
 	background: linear-gradient(to right, #3c1053, #ad5389);
 	color: white;
+}
+
+/* Media queries */
+@media (max-width: 1000px) {
+	.loginCard {
+		width: 50%;
+	}
+}
+@media (max-width: 700px) {
+	.loginCard {
+		width: 65%;
+	}
+}
+@media (max-width: 500px) {
+	.loginCard {
+		width: 80%;
+	}
+}
+@media (max-width: 400px) {
+	.loginCard {
+		width: 100%;
+	}
 }

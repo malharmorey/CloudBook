@@ -18,6 +18,9 @@ const NoteState = (props) => {
 		});
 		const fetchedNotes = await response.json();
 		setNotes(fetchedNotes.notes);
+		if (fetchedNotes.success !== true) {
+			props.showAlert(`${fetchedNotes.message}`, 'danger');
+		}
 	};
 
 	// ADD note
@@ -41,7 +44,7 @@ const NoteState = (props) => {
 			props.showAlert(`${addedNote.message}`, 'success');
 		} else {
 			if (addedNote.message === undefined) {
-				props.showAlert(`Oops unable to add your note`, 'danger');
+				props.showAlert(`Oops unable to add your note`, 'warning');
 			} else {
 				props.showAlert(`${addedNote.message}`, 'danger');
 			}
@@ -67,7 +70,7 @@ const NoteState = (props) => {
 			props.showAlert(`${serverResponse.message}`, 'success');
 		} else {
 			if (serverResponse.message === undefined) {
-				props.showAlert(`Oops unable to update your note`, 'danger');
+				props.showAlert(`Oops unable to update your note`, 'warning');
 			} else {
 				props.showAlert(`${serverResponse.message}`, 'danger');
 			}
@@ -103,10 +106,10 @@ const NoteState = (props) => {
 		const serverResponse = await response.json();
 		// Alerts
 		if (serverResponse.success) {
-			props.showAlert(`${serverResponse.message}`, 'success');
+			props.showAlert(`${serverResponse.message}`, 'danger');
 		} else {
 			if (serverResponse.message === undefined) {
-				props.showAlert(`Oops unable to delete your note`, 'danger');
+				props.showAlert(`Oops unable to delete your note`, 'warning');
 			} else {
 				props.showAlert(`${serverResponse.message}`, 'danger');
 			}
