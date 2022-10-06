@@ -12,8 +12,7 @@ const NoteState = (props) => {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
-				'auth-token':
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
+				'auth-token': localStorage.getItem('token'),
 			},
 		});
 		const fetchedNotes = await response.json();
@@ -30,8 +29,7 @@ const NoteState = (props) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'auth-token':
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
+				'auth-token': localStorage.getItem('token'),
 			},
 			body: JSON.stringify({ title, description, tag }),
 		});
@@ -58,8 +56,7 @@ const NoteState = (props) => {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
-				'auth-token':
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
+				'auth-token': localStorage.getItem('token'),
 			},
 			body: JSON.stringify({ title, description, tag }),
 		});
@@ -97,8 +94,7 @@ const NoteState = (props) => {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
-				'auth-token':
-					'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxODFlZGVkZDQzYzU0YWI4NWRjNjIzIn0sImlhdCI6MTY2MjUzMDEyN30.sEtjqQkIO0iQefwBewcm4uAjaSNhGAQRTeZ0LXQkNlY',
+				'auth-token': localStorage.getItem('token'),
 			},
 		});
 
@@ -122,9 +118,21 @@ const NoteState = (props) => {
 		setNotes(newNotesArray);
 	};
 
+	// Clearing user notes on client side
+	const clearUserNotesArray = () => {
+		setNotes([]);
+	};
+
 	return (
 		<NoteContext.Provider
-			value={{ notes, getAllNotes, addNote, deleteNote, editNote }}
+			value={{
+				notes,
+				getAllNotes,
+				addNote,
+				deleteNote,
+				editNote,
+				clearUserNotesArray,
+			}}
 		>
 			{props.children}
 		</NoteContext.Provider>

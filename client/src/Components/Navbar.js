@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../StyleSheets/navbar.css';
+import { useNavigate } from 'react-router-dom';
+import noteContext from '../context/notes/NoteContext';
 
-const Navbar = () => {
+const Navbar = (props) => {
+	const context = useContext(noteContext);
+	const { clearUserNotesArray } = context;
+	let navigate = useNavigate();
+
+	const handleLogout = () => {
+		localStorage.removeItem('token');
+		navigate('/login');
+		clearUserNotesArray();
+		props.showAlert('Logged out successfully', 'success');
+	};
 	return (
 		<>
 			<nav id='navbar' className=' navbar  navbar-expand-lg '>
@@ -35,10 +47,21 @@ const Navbar = () => {
 								</Link>
 							</li>
 						</ul>
-						<i className='fa-solid fa-right-to-bracket s'></i>
-						<Link className='me-4 loginBtn' to='/login'>
-							Login
-						</Link>
+						{!localStorage.getItem('token') ? (
+							<div className='btnContainer'>
+								<i className='fa-solid fa-right-to-bracket s'></i>
+								<Link className='me-4 loginBtn' to='/login'>
+									Login
+								</Link>{' '}
+							</div>
+						) : (
+							<div className='btnContainer'>
+								<i className='fa-solid fa-right-to-bracket s'></i>
+								<span className='me-4 loginBtn' onClick={handleLogout}>
+									Logout
+								</span>
+							</div>
+						)}
 					</div>
 				</div>
 			</nav>
