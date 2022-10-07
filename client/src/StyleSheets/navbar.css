@@ -5,28 +5,65 @@
 	top: 0px;
 	z-index: 99;
 	width: 100vw;
+	padding-bottom: 6px;
 	backdrop-filter: blur(7px) saturate(191%);
 	-webkit-backdrop-filter: blur(7px) saturate(191%);
 	background-color: rgba(43, 52, 76, 0.56);
-	border: 1px solid rgba(255, 255, 255, 0.125);
+	border: 0.8px solid rgba(255, 255, 255, 0.125);
 }
 
 .navTitle {
 	color: white !important;
+	font-family: 'Kalam', cursive;
+	font-weight: 700;
+	font-size: 1.3rem;
+	padding-top: 7px;
 }
+
 .navLink {
 	color: white !important;
 	font-family: 'Raleway', sans-serif;
-	font-weight: 600;
+	font-weight: 500;
+	font-size: 1.05rem;
 }
 
 .loginBtn {
 	font-family: 'Raleway', sans-serif;
-	font-weight: 600;
+	font-weight: 500;
 	cursor: pointer;
 	text-decoration: none;
 	color: white;
 }
 .loginBtn:hover {
 	color: white;
+}
+.dropdown-menu {
+	min-width: fit-content;
+	padding: 0px;
+	backdrop-filter: blur(7px) saturate(191%);
+	-webkit-backdrop-filter: blur(7px) saturate(191%);
+	background-color: rgba(43, 52, 76, 0.56);
+	border: 0.8px solid rgba(255, 255, 255, 0.125);
+}
+.dropdown-menu > li {
+	margin: 5px 1rem;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	grid-gap: 3px;
+}
+.dropdown-item {
+	display: inline;
+	font-weight: 400;
+	padding: 0px;
+	color: white;
+	cursor: pointer;
+	margin: 0px;
+}
+.dropdown-item:hover {
+	color: white;
+	backdrop-filter: blur(7px) saturate(191%);
+	-webkit-backdrop-filter: blur(7px) saturate(191%);
+	background-color: rgba(43, 52, 76, 0.56);
 }

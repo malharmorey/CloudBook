@@ -4,6 +4,7 @@ const NoteState = (props) => {
 	const host = 'http://localhost:8000';
 	const notesArray = [];
 	const [notes, setNotes] = useState(notesArray);
+	const [userName, setUserName] = useState();
 
 	// GET All notes
 	const getAllNotes = async () => {
@@ -17,6 +18,7 @@ const NoteState = (props) => {
 		});
 		const fetchedNotes = await response.json();
 		setNotes(fetchedNotes.notes);
+		setUserName(fetchedNotes.userName);
 		if (fetchedNotes.success !== true) {
 			props.showAlert(`${fetchedNotes.message}`, 'danger');
 		}
@@ -126,6 +128,7 @@ const NoteState = (props) => {
 	return (
 		<NoteContext.Provider
 			value={{
+				userName,
 				notes,
 				getAllNotes,
 				addNote,

@@ -3,6 +3,7 @@ const router = express.Router();
 const Note = require('../models/Note');
 const fetchuser = require('../middleware/fetchuser');
 const { body, validationResult } = require('express-validator');
+const User = require('../models/User');
 
 var success;
 //---------------------------------ROUTE 1---------------------------------
@@ -10,8 +11,12 @@ var success;
 router.get('/getallnotes', fetchuser, async (req, res) => {
 	try {
 		const notes = await Note.find({ user: req.user.id });
+		const user = await User.find({ _id: req.user.id });
+		userName = user.map((user) => {
+			return user.name;
+		});
 		success = true;
-		res.json({ success, notes: notes });
+		res.json({ success, userName: userName, notes: notes });
 	} catch (error) {
 		success = false;
 		res.status(500).json({ success, message: 'Internal server error' });

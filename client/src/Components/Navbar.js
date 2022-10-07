@@ -6,7 +6,7 @@ import noteContext from '../context/notes/NoteContext';
 
 const Navbar = (props) => {
 	const context = useContext(noteContext);
-	const { clearUserNotesArray } = context;
+	const { clearUserNotesArray, userName } = context;
 	let navigate = useNavigate();
 
 	const handleLogout = () => {
@@ -49,17 +49,32 @@ const Navbar = (props) => {
 						</ul>
 						{!localStorage.getItem('token') ? (
 							<div className='btnContainer'>
-								<i className='fa-solid fa-right-to-bracket s'></i>
+								<i className='fa-solid fa-right-to-bracket '></i>{' '}
 								<Link className='me-4 loginBtn' to='/login'>
 									Login
-								</Link>{' '}
+								</Link>
 							</div>
 						) : (
 							<div className='btnContainer'>
-								<i className='fa-solid fa-right-to-bracket s'></i>
-								<span className='me-4 loginBtn' onClick={handleLogout}>
-									Logout
-								</span>
+								<div class='dropdown' style={{ display: 'inline-block' }}>
+									<i className='fa-solid fa-user '></i>{' '}
+									<span
+										className='me-4 loginBtn dropdown-toggle'
+										id='dropdownMenuLink'
+										data-bs-toggle='dropdown'
+										aria-expanded='false'
+									>
+										{userName ? userName : 'User'}
+									</span>
+									<ul class='dropdown-menu ' aria-labelledby='dropdownMenuLink'>
+										<li>
+											<i className='fa-solid fa-right-from-bracket '></i>{' '}
+											<p className='dropdown-item' onClick={handleLogout}>
+												Logout
+											</p>
+										</li>
+									</ul>
+								</div>
 							</div>
 						)}
 					</div>
