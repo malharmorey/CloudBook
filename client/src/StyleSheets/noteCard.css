@@ -12,12 +12,12 @@
 	margin: 0.8rem 0.3rem;
 }
 h4 {
-	font-family: 'Kalam', cursive;
+	font-family: var(--primaryFont);
 	font-size: 1.8rem;
 	font-weight: 700;
 }
 .cardNote {
-	font-family: 'Raleway', sans-serif;
+	font-family: var(--secondaryFont);
 	font-weight: 400;
 	font-size: 1.1rem;
 }
@@ -29,10 +29,31 @@ img {
 	width: 27rem;
 }
 .cardTag {
-	font-family: 'Kalam', cursive;
+	font-family: var(--primaryFont);
 	font-weight: 400;
 }
 small {
 	font-weight: bolder;
 	color: rgb(217, 216, 216);
+}
+
+/* Media queries */
+@media (max-width: 500px) {
+	.cardBody {
+		margin: 0.6rem 0.2rem;
+	}
+}
+@media (max-width: 400px) {
+	.cardBody {
+		margin: 0.5rem 0rem;
+	}
+	h4 {
+		font-size: 1.7rem;
+	}
+	.cardNote {
+		font-size: 1.05rem;
+	}
+	.fontIcon {
+		font-size: 21px !important;
+	}
 }

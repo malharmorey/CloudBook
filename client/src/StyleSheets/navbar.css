@@ -5,7 +5,7 @@
 	top: 0px;
 	z-index: 99;
 	width: 100vw;
-	padding-bottom: 6px;
+	padding: 4px 0px;
 	backdrop-filter: blur(7px) saturate(191%);
 	-webkit-backdrop-filter: blur(7px) saturate(191%);
 	background-color: rgba(43, 52, 76, 0.56);
@@ -14,21 +14,22 @@
 
 .navTitle {
 	color: white !important;
-	font-family: 'Kalam', cursive;
+	font-family: var(--primaryFont);
 	font-weight: 700;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	padding-top: 7px;
 }
 
 .navLink {
 	color: white !important;
-	font-family: 'Raleway', sans-serif;
+	font-family: var(--secondaryFont);
 	font-weight: 500;
 	font-size: 1.05rem;
 }
 
 .loginBtn {
-	font-family: 'Raleway', sans-serif;
+	font-family: var(--secondaryFont);
+	font-size: 1.05rem;
 	font-weight: 500;
 	cursor: pointer;
 	text-decoration: none;
@@ -56,6 +57,7 @@
 .dropdown-item {
 	display: inline;
 	font-weight: 400;
+	font-size: 1.05rem;
 	padding: 0px;
 	color: white;
 	cursor: pointer;

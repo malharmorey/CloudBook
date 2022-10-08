@@ -1,13 +1,13 @@
 import React from 'react';
 import '../StyleSheets/home.css';
-import Notes from './Notes';
+import UpdateNotes from './UpdateNotes';
 import NewNote from './NewNote';
 
-const Home = (props) => {
+const Home = () => {
 	return (
 		<>
-			<h2>Your Notes</h2>
-			<Notes />
+			<h2 className='pageHeading'>Your Notes</h2>
+			<UpdateNotes />
 			<NewNote />
 		</>
 	);

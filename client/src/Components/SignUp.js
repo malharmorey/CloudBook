@@ -13,17 +13,20 @@ const SignUp = (props) => {
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
-		const response = await fetch(`http://localhost:8000/api/auth/createUser`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				name: credentials.name,
-				email: credentials.email,
-				password: credentials.password,
-			}),
-		});
+		const response = await fetch(
+			`http://192.168.1.3:8000/api/auth/createUser`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					name: credentials.name,
+					email: credentials.email,
+					password: credentials.password,
+				}),
+			}
+		);
 		const json = await response.json();
 		if (json.success) {
 			localStorage.setItem('token', json.authToken);

@@ -60,11 +60,12 @@ function NewNote() {
 									<input
 										type='text'
 										name='title'
-										className='form-control'
+										className='form-control '
 										id='title'
 										onChange={onChange}
 										value={note.title}
 										minLength={3}
+										placeholder={'Your note title'}
 										required
 									/>
 								</div>
@@ -73,13 +74,14 @@ function NewNote() {
 										Note:
 									</label>
 									<textarea
-										className='form-control'
+										className='form-control '
 										id='description'
 										name='description'
 										rows='6'
 										onChange={onChange}
 										value={note.description}
 										minLength={5}
+										placeholder={'Type your note here....'}
 										required
 									></textarea>
 								</div>
@@ -89,11 +91,12 @@ function NewNote() {
 									</label>
 									<input
 										type='text'
-										className='form-control'
+										className='form-control '
 										id='tag'
 										name='tag'
 										onChange={onChange}
 										value={note.tag}
+										placeholder={'#Personal'}
 									/>
 								</div>
 							</form>

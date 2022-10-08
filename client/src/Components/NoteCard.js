@@ -8,7 +8,7 @@ function NoteCard(props) {
 	const context = useContext(noteContext);
 	const { deleteNote } = context;
 	return (
-		<div className='my-4'>
+		<div className='my-3'>
 			<div
 				className='card m-auto '
 				id='divCard'
@@ -40,7 +40,7 @@ function NoteCard(props) {
 					</p>
 
 					<i
-						className={`fa-regular fa-pen-to-square fa-lg text-warning ${
+						className={`fa-regular fa-pen-to-square fa-lg text-warning fontIcon ${
 							moment(props.date).isValid() ? '' : 'd-none'
 						}`}
 						role='button'
@@ -50,7 +50,7 @@ function NoteCard(props) {
 					></i>
 
 					<i
-						className={`fa-regular fa-trash-can mx-4 fa-lg text-danger ${
+						className={`fa-regular fa-trash-can mx-4 fa-lg text-danger fontIcon ${
 							moment(props.date).isValid() ? '' : 'd-none'
 						}`}
 						role='button'

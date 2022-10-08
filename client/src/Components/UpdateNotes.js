@@ -1,17 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import noteContext from '../context/notes/NoteContext';
-import NoteCard from './NoteCard';
-import { useNavigate } from 'react-router-dom';
+import SetNotes from './SetNotes';
 
-function Notes() {
+function UpdateNotes() {
 	const context = useContext(noteContext);
-	const { notes, getAllNotes, editNote } = context;
+	const { editNote } = context;
 	const ref = useRef(null);
-	let navigate = useNavigate();
-
-	useEffect(() => {
-		localStorage.getItem('token') !== null ? getAllNotes() : navigate('/login');
-	}, []); // eslint-disable-line
 
 	const [note, setNote] = useState({
 		etitle: '',
@@ -84,6 +78,7 @@ function Notes() {
 										onChange={onChange}
 										value={note.etitle}
 										minLength={3}
+										placeholder={'Your note title'}
 										required
 									/>
 								</div>
@@ -99,6 +94,7 @@ function Notes() {
 										onChange={onChange}
 										value={note.edescription}
 										minLength={5}
+										placeholder={'Type to edit yout note...'}
 										required
 									></textarea>
 								</div>
@@ -113,6 +109,7 @@ function Notes() {
 										name='etag'
 										onChange={onChange}
 										value={note.etag}
+										placeholder={'#Personal'}
 									/>
 								</div>
 							</form>
@@ -140,33 +137,9 @@ function Notes() {
 					</div>
 				</div>
 			</div>
-
-			<div className='row'>
-				{notes.length === 0 && (
-					<NoteCard title={'Nothing in Here, but you and me'} date={''} />
-				)}
-				{notes.map((note) => {
-					return (
-						<div className='col-md-6 p-0' key={note._id}>
-							<NoteCard
-								title={note.title ? note.title : 'No title available'}
-								description={
-									note.description
-										? note.description
-										: 'No description available'
-								}
-								tag={note.tag}
-								date={note.date}
-								id={note._id}
-								updateNote={updateNote}
-								note={note}
-							/>
-						</div>
-					);
-				})}
-			</div>
+			<SetNotes updateNote={updateNote} />
 		</>
 	);
 }
 
-export default Notes;
+export default UpdateNotes;

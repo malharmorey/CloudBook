@@ -25,3 +25,10 @@
 	background-color: rgba(43, 52, 76, 0.56);
 	border: 1px solid rgba(255, 255, 255, 0.125);
 }
+.modal-title {
+	font-family: var(--secondaryFont);
+	font-weight: 600;
+}
+.col-form-label {
+	font-family: var(--secondaryFont);
+}

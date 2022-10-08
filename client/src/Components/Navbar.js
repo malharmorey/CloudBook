@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../StyleSheets/navbar.css';
 import { useNavigate } from 'react-router-dom';
 import noteContext from '../context/notes/NoteContext';
@@ -9,21 +9,35 @@ const Navbar = (props) => {
 	const { clearUserNotesArray, userName } = context;
 	let navigate = useNavigate();
 
+	// Logging out current user and clearing user's notes array
 	const handleLogout = () => {
 		localStorage.removeItem('token');
 		navigate('/login');
 		clearUserNotesArray();
 		props.showAlert('Logged out successfully', 'success');
 	};
+
+	// Collapsing navbar after selecting any NavLink
+	const navButton = useRef(null);
+	const linksContainerRef = useRef(null);
+	function collapseNav() {
+		navButton.current.classList.add('collapsed');
+		linksContainerRef.current.classList.remove('show');
+	}
 	return (
 		<>
 			<nav id='navbar' className=' navbar  navbar-expand-lg '>
 				<div className='container-fluid'>
-					<Link className='navbar-brand  navTitle' to='/'>
+					<NavLink
+						className='navbar-brand  navTitle'
+						to='/'
+						onClick={collapseNav}
+					>
 						CloudBook
-					</Link>
+					</NavLink>
 
 					<button
+						ref={navButton}
 						className='navbar-toggler'
 						type='button'
 						data-bs-toggle='collapse'
@@ -34,29 +48,41 @@ const Navbar = (props) => {
 					>
 						<span className='navbar-toggler-icon'></span>
 					</button>
-					<div className='collapse navbar-collapse' id='navbarSupportedContent'>
+					<div
+						className='collapse navbar-collapse'
+						id='navbarSupportedContent'
+						ref={linksContainerRef}
+					>
 						<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
 							<li className='nav-item'>
-								<Link className='nav-link navLink' aria-current='page' to='/'>
+								<NavLink
+									to='/'
+									className='nav-link navLink'
+									onClick={collapseNav}
+								>
 									Home
-								</Link>
+								</NavLink>
 							</li>
 							<li className='nav-item'>
-								<Link className='nav-link navLink' to='/about'>
+								<NavLink
+									to='/about'
+									className='nav-link navLink'
+									onClick={collapseNav}
+								>
 									About
-								</Link>
+								</NavLink>
 							</li>
 						</ul>
 						{!localStorage.getItem('token') ? (
 							<div className='btnContainer'>
 								<i className='fa-solid fa-right-to-bracket '></i>{' '}
-								<Link className='me-4 loginBtn' to='/login'>
+								<NavLink className='me-4 loginBtn' to='/login'>
 									Login
-								</Link>
+								</NavLink>
 							</div>
 						) : (
 							<div className='btnContainer'>
-								<div class='dropdown' style={{ display: 'inline-block' }}>
+								<div className='dropdown' style={{ display: 'inline-block' }}>
 									<i className='fa-solid fa-user '></i>{' '}
 									<span
 										className='me-4 loginBtn dropdown-toggle'
@@ -66,10 +92,18 @@ const Navbar = (props) => {
 									>
 										{userName ? userName : 'User'}
 									</span>
-									<ul class='dropdown-menu ' aria-labelledby='dropdownMenuLink'>
+									<ul
+										className='dropdown-menu '
+										aria-labelledby='dropdownMenuLink'
+									>
 										<li>
 											<i className='fa-solid fa-right-from-bracket '></i>{' '}
-											<p className='dropdown-item' onClick={handleLogout}>
+											<p
+												className='dropdown-item'
+												onClick={handleLogout}
+												data-bs-toggle='collapse'
+												data-bs-target='.navbar-collapse.show'
+											>
 												Logout
 											</p>
 										</li>
