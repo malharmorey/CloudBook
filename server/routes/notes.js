@@ -58,6 +58,7 @@ router.post(
 				description,
 				tag,
 				user: req.user.id,
+				date: Date.now(),
 			});
 			await note.save();
 			success = true;
@@ -104,6 +105,7 @@ router.put(
 			const newNote = {};
 			if (title) {
 				newNote.title = title;
+				newNote.date = Date.now();
 			}
 			if (description) {
 				newNote.description = description;
@@ -134,6 +136,7 @@ router.put(
 			res.json({
 				success,
 				message: ' Your note has been updated successfully',
+				date: Date.now(),
 			});
 		} catch (error) {
 			success = false;

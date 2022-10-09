@@ -1,9 +1,8 @@
 import NoteContext from './NoteContext';
 import { useState } from 'react';
 const NoteState = (props) => {
-	const host = 'http://192.168.1.3:8000';
-	const notesArray = [];
-	const [notes, setNotes] = useState(notesArray);
+	const host = 'http://192.168.1.4:8000';
+	const [notes, setNotes] = useState([]);
 	const [userName, setUserName] = useState();
 
 	// GET All notes
@@ -43,11 +42,9 @@ const NoteState = (props) => {
 		if (addedNote.success) {
 			props.showAlert(`${addedNote.message}`, 'success');
 		} else {
-			if (addedNote.message === undefined) {
-				props.showAlert(`Oops unable to add your note`, 'warning');
-			} else {
-				props.showAlert(`${addedNote.message}`, 'danger');
-			}
+			addedNote.message === undefined
+				? props.showAlert(`Oops unable to add your note`, 'warning')
+				: props.showAlert(`${addedNote.message}`, 'danger');
 		}
 	};
 
@@ -68,11 +65,9 @@ const NoteState = (props) => {
 		if (serverResponse.success) {
 			props.showAlert(`${serverResponse.message}`, 'success');
 		} else {
-			if (serverResponse.message === undefined) {
-				props.showAlert(`Oops unable to update your note`, 'warning');
-			} else {
-				props.showAlert(`${serverResponse.message}`, 'danger');
-			}
+			serverResponse.message === undefined
+				? props.showAlert(`Oops unable to update your note`, 'warning')
+				: props.showAlert(`${serverResponse.message}`, 'danger');
 		}
 
 		// Client-side logic to edit a note
@@ -83,6 +78,7 @@ const NoteState = (props) => {
 				newNotes[index].title = title;
 				newNotes[index].description = description;
 				newNotes[index].tag = tag;
+				newNotes[index].date = serverResponse.date;
 				break;
 			}
 		}
@@ -106,11 +102,9 @@ const NoteState = (props) => {
 		if (serverResponse.success) {
 			props.showAlert(`${serverResponse.message}`, 'danger');
 		} else {
-			if (serverResponse.message === undefined) {
-				props.showAlert(`Oops unable to delete your note`, 'warning');
-			} else {
-				props.showAlert(`${serverResponse.message}`, 'danger');
-			}
+			serverResponse.message === undefined
+				? props.showAlert(`Oops unable to delete your note`, 'warning')
+				: props.showAlert(`${serverResponse.message}`, 'danger');
 		}
 
 		// Client-side logic to delete a note

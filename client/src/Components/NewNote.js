@@ -15,7 +15,9 @@ function NewNote() {
 		addNote(note.title, note.description, note.tag);
 		setNote({ title: '', description: '', tag: '' });
 	};
-
+	const handleCloseClick = (e) => {
+		setNote({ title: '', description: '', tag: '' });
+	};
 	const onChange = (e) => {
 		setNote({ ...note, [e.target.name]: e.target.value });
 	};
@@ -106,6 +108,7 @@ function NewNote() {
 								type='button'
 								className='btn btn-secondary bg-secondary bg-gradient'
 								data-bs-dismiss='modal'
+								onClick={handleCloseClick}
 							>
 								Close
 							</button>

@@ -73,14 +73,7 @@ const Navbar = (props) => {
 								</NavLink>
 							</li>
 						</ul>
-						{!localStorage.getItem('token') ? (
-							<div className='btnContainer'>
-								<i className='fa-solid fa-right-to-bracket '></i>{' '}
-								<NavLink className='me-4 loginBtn' to='/login'>
-									Login
-								</NavLink>
-							</div>
-						) : (
+						{localStorage.getItem('token') ? (
 							<div className='btnContainer'>
 								<div className='dropdown' style={{ display: 'inline-block' }}>
 									<i className='fa-solid fa-user '></i>{' '}
@@ -110,6 +103,8 @@ const Navbar = (props) => {
 									</ul>
 								</div>
 							</div>
+						) : (
+							''
 						)}
 					</div>
 				</div>

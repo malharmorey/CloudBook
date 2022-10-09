@@ -14,7 +14,7 @@ const SignUp = (props) => {
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 		const response = await fetch(
-			`http://192.168.1.3:8000/api/auth/createUser`,
+			`http://192.168.1.4:8000/api/auth/createUser`,
 			{
 				method: 'POST',
 				headers: {

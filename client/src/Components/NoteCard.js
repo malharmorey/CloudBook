@@ -32,7 +32,7 @@ function NoteCard(props) {
 						<small
 							className={`${moment(props.date).isValid() ? '' : 'd-none'}`}
 						>
-							Modified{' '}
+							Updated{' '}
 							{moment(props.date).isValid()
 								? [moment(props.date).startOf('minutes').fromNow()]
 								: 'long ago'}
