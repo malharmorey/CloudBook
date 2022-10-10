@@ -14,7 +14,7 @@ const SignUp = (props) => {
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 		const response = await fetch(
-			`http://192.168.1.4:8000/api/auth/createUser`,
+			`http://192.168.1.3:8000/api/auth/createUser`,
 			{
 				method: 'POST',
 				headers: {
@@ -33,7 +33,6 @@ const SignUp = (props) => {
 			navigate('/');
 			props.showAlert('Account created sccessfully!', 'success');
 		} else {
-			// alert(
 			if (json.message === undefined) {
 				props.showAlert(
 					'Password must contain atleast 1 lowerCase, 1 upperCase, 1 number and 1 symbol',

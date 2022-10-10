@@ -9,7 +9,7 @@ const Login = (props) => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		const response = await fetch(`http://192.168.1.4:8000/api/auth/login`, {
+		const response = await fetch(`http://192.168.1.3:8000/api/auth/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -25,7 +25,6 @@ const Login = (props) => {
 			navigate('/');
 			props.showAlert('Successfully loged In', 'success');
 		} else {
-			// alert(
 			if (json.message === undefined) {
 				props.showAlert('You have entered wrong credentials', 'warning');
 			} else {

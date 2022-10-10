@@ -5,7 +5,7 @@ import NoteCard from './NoteCard';
 
 function SetNotes(props) {
 	const context = useContext(noteContext);
-	const { notes, getAllNotes } = context;
+	const { reversedNotesArray, getAllNotes } = context;
 	let navigate = useNavigate();
 
 	useEffect(() => {
@@ -14,10 +14,10 @@ function SetNotes(props) {
 	return (
 		<>
 			<div className='row'>
-				{notes.length === 0 && (
+				{reversedNotesArray.length === 0 && (
 					<NoteCard title={'Nothing in Here, but you and me'} date={''} />
 				)}
-				{notes.map((note) => {
+				{reversedNotesArray.map((note) => {
 					return (
 						<div className='col-md-6 p-0' key={note._id}>
 							<NoteCard

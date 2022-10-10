@@ -1,7 +1,7 @@
 import NoteContext from './NoteContext';
 import { useState } from 'react';
 const NoteState = (props) => {
-	const host = 'http://192.168.1.4:8000';
+	const host = 'http://192.168.1.3:8000';
 	const [notes, setNotes] = useState([]);
 	const [userName, setUserName] = useState();
 
@@ -119,11 +119,13 @@ const NoteState = (props) => {
 		setNotes([]);
 	};
 
+	// Reversing user notes array to display new note at the top.
+	var reversedNotesArray = [...notes].reverse();
 	return (
 		<NoteContext.Provider
 			value={{
 				userName,
-				notes,
+				reversedNotesArray,
 				getAllNotes,
 				addNote,
 				deleteNote,
