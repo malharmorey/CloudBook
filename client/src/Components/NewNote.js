@@ -11,11 +11,11 @@ function NewNote() {
 		tag: '',
 	});
 
-	const handleSaveClick = (e) => {
+	const handleSaveClick = () => {
 		addNote(note.title, note.description, note.tag);
 		setNote({ title: '', description: '', tag: '' });
 	};
-	const handleCloseClick = (e) => {
+	const handleCloseClick = () => {
 		setNote({ title: '', description: '', tag: '' });
 	};
 	const onChange = (e) => {
