@@ -9,37 +9,36 @@ const SignUp = (props) => {
 		email: '',
 		password: '',
 	});
+	const { showAlert, host, title } = props;
+	document.title = `${title}`;
 	let navigate = useNavigate();
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
-		const response = await fetch(
-			`http://192.168.1.2:8000/api/auth/createUser`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name: credentials.name,
-					email: credentials.email,
-					password: credentials.password,
-				}),
-			}
-		);
+		const response = await fetch(`${host}/api/auth/createUser`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name: credentials.name,
+				email: credentials.email,
+				password: credentials.password,
+			}),
+		});
 		const json = await response.json();
 		if (json.success) {
 			localStorage.setItem('token', json.authToken);
 			navigate('/');
-			props.showAlert('Account created sccessfully!', 'success');
+			showAlert('Account created sccessfully!', 'success');
 		} else {
 			if (json.message === undefined) {
-				props.showAlert(
+				showAlert(
 					'Password must contain atleast 1 lowerCase, 1 upperCase, 1 number and 1 symbol',
 					'warning'
 				);
 			} else {
-				props.showAlert(`${json.message}`, 'danger');
+				showAlert(`${json.message}`, 'danger');
 			}
 		}
 		setCredentials({
@@ -58,7 +57,7 @@ const SignUp = (props) => {
 			<div className='loginContainer '>
 				<div className='signUpCard '>
 					<div className='loginCardHeader'>
-						<p>SignUp Here</p>
+						<p>👤SignUp Here</p>
 					</div>
 					<div className='loginCardBody'>
 						<form onSubmit={handleSignUp}>

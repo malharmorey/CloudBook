@@ -11,6 +11,8 @@ import Alert from './Components/Alert';
 
 function App() {
 	const [alert, setAlert] = useState(null);
+	const host = 'http://192.168.1.3:8000';
+	const title = 'CloudBook | Your notes on cloud';
 
 	//Alerts
 	const showAlert = (message, type) => {
@@ -24,23 +26,27 @@ function App() {
 	};
 	return (
 		<>
-			<NoteState showAlert={showAlert}>
+			<NoteState showAlert={showAlert} host={host}>
 				<Router>
 					<Navbar showAlert={showAlert} />
 					<Alert alert={alert} />
 					<div className='mainContainer'>
 						<Routes>
-							<Route exact path='/' element={<Home />} />
-							<Route exact path='/about' element={<About />} />
+							<Route exact path='/' element={<Home title={'Home'} />} />
+							<Route exact path='/about' element={<About title={'About'} />} />
 							<Route
 								exact
 								path='/login'
-								element={<Login showAlert={showAlert} />}
+								element={
+									<Login showAlert={showAlert} host={host} title={title} />
+								}
 							/>
 							<Route
 								exact
 								path='/signup'
-								element={<SignUp showAlert={showAlert} />}
+								element={
+									<SignUp showAlert={showAlert} host={host} title={title} />
+								}
 							/>
 						</Routes>
 					</div>

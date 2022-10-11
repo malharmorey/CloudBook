@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
 	const [credentials, setCredentials] = useState({ email: '', password: '' });
+	const { showAlert, host, title } = props;
+	document.title = `${title}`;
 	let navigate = useNavigate();
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		const response = await fetch(`http://192.168.1.2:8000/api/auth/login`, {
+		const response = await fetch(`${host}/api/auth/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -23,12 +25,12 @@ const Login = (props) => {
 		if (json.success) {
 			localStorage.setItem('token', json.authToken);
 			navigate('/');
-			props.showAlert('Successfully loged In', 'success');
+			showAlert('Successfully loged In', 'success');
 		} else {
 			if (json.message === undefined) {
-				props.showAlert('You have entered wrong credentials', 'warning');
+				showAlert('You have entered wrong credentials', 'warning');
 			} else {
-				props.showAlert(`${json.message}`, 'danger');
+				showAlert(`${json.message}`, 'danger');
 			}
 		}
 		setCredentials({
@@ -46,7 +48,7 @@ const Login = (props) => {
 			<div className='loginContainer '>
 				<div className='loginCard '>
 					<div className='loginCardHeader'>
-						<p>Login Here</p>
+						<p>📲Login Here</p>
 					</div>
 					<div className='loginCardBody'>
 						<form onSubmit={handleLogin}>

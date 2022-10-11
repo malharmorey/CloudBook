@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import '../StyleSheets/navbar.css';
 import { useNavigate } from 'react-router-dom';
 import noteContext from '../context/notes/NoteContext';
+import cloudBookEmoji from '../images/logo512.png';
 
 const Navbar = (props) => {
 	const context = useContext(noteContext);
@@ -33,9 +34,9 @@ const Navbar = (props) => {
 						to='/'
 						onClick={collapseNav}
 					>
+						<img className='cloudBookEmoji' src={cloudBookEmoji} alt='' />
 						CloudBook
 					</NavLink>
-
 					<button
 						ref={navButton}
 						className='navbar-toggler'
@@ -76,7 +77,7 @@ const Navbar = (props) => {
 						{localStorage.getItem('token') ? (
 							<div className='btnContainer'>
 								<div className='dropdown' style={{ display: 'inline-block' }}>
-									<i className='fa-solid fa-user '></i>{' '}
+									👤{' '}
 									<span
 										className='me-4 loginBtn dropdown-toggle'
 										id='dropdownMenuLink'
@@ -90,7 +91,7 @@ const Navbar = (props) => {
 										aria-labelledby='dropdownMenuLink'
 									>
 										<li>
-											<i className='fa-solid fa-right-from-bracket '></i>{' '}
+											⚰️{' '}
 											<p
 												className='dropdown-item'
 												onClick={handleLogout}

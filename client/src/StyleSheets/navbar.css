@@ -11,7 +11,11 @@
 	background-color: rgba(43, 52, 76, 0.56);
 	border: 0.8px solid rgba(255, 255, 255, 0.125);
 }
-
+.cloudBookEmoji {
+	height: 1.5rem;
+	width: 1.5rem;
+	margin-bottom: 5px;
+}
 .navTitle {
 	color: white !important;
 	font-family: var(--primaryFont);
@@ -20,6 +24,9 @@
 	padding-top: 7px;
 }
 
+.navbar-nav {
+	margin-left: 0.5rem;
+}
 .navLink {
 	color: white !important;
 	font-family: var(--secondaryFont);
