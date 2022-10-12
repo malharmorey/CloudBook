@@ -1,15 +1,26 @@
 import React, { useContext, useEffect } from 'react';
 import noteContext from '../context/notes/NoteContext';
+import alertContext from '../context/alerts/AlertContext';
 import { useNavigate } from 'react-router-dom';
 import NoteCard from './NoteCard';
 
 function SetNotes(props) {
+	// Notes-Context
 	const context = useContext(noteContext);
 	const { reversedNotesArray, getAllNotes } = context;
+	// Alert-Context
+	const Alertcontext = useContext(alertContext);
+	const { showAlert } = Alertcontext;
+
 	let navigate = useNavigate();
 
 	useEffect(() => {
-		localStorage.getItem('token') !== null ? getAllNotes() : navigate('/login');
+		if (localStorage.getItem('token') !== null) {
+			getAllNotes();
+		} else {
+			navigate('/login');
+			showAlert('Please login first', 'danger');
+		}
 	}, []); // eslint-disable-line
 	return (
 		<>

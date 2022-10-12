@@ -1,7 +1,10 @@
 import NoteContext from './NoteContext';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import alertContext from '../alerts/AlertContext';
 const NoteState = (props) => {
-	const { showAlert, host, children } = props;
+	const Alertcontext = useContext(alertContext);
+	const { showAlert } = Alertcontext;
+	const { host, children } = props;
 	const [notes, setNotes] = useState([]);
 	const [userName, setUserName] = useState();
 

@@ -3,8 +3,10 @@ import '../StyleSheets/newNote.css';
 import noteContext from '../context/notes/NoteContext';
 
 function NewNote() {
+	// Notes-Context
 	const context = useContext(noteContext);
 	const { addNote } = context;
+
 	const [note, setNote] = useState({
 		title: '',
 		description: '',
@@ -110,7 +112,7 @@ function NewNote() {
 								data-bs-dismiss='modal'
 								onClick={handleCloseClick}
 							>
-								Close
+								❌ Close
 							</button>
 							<button
 								type='button'
@@ -119,7 +121,7 @@ function NewNote() {
 								disabled={note.title.length < 3 || note.description.length < 5}
 								onClick={handleSaveClick}
 							>
-								Save
+								💾 Save
 							</button>
 						</div>
 					</div>

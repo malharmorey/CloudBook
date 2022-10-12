@@ -3,8 +3,10 @@ import noteContext from '../context/notes/NoteContext';
 import SetNotes from './SetNotes';
 
 function UpdateNotes() {
+	// Notes-Context
 	const context = useContext(noteContext);
 	const { editNote } = context;
+
 	const ref = useRef(null);
 
 	const [note, setNote] = useState({
@@ -120,7 +122,7 @@ function UpdateNotes() {
 								className='btn btn-secondary bg-secondary bg-gradient'
 								data-bs-dismiss='modal'
 							>
-								Close
+								❌ Close
 							</button>
 							<button
 								type='button'
@@ -131,7 +133,7 @@ function UpdateNotes() {
 								}
 								onClick={handleSaveClick}
 							>
-								Save
+								💾 Save
 							</button>
 						</div>
 					</div>

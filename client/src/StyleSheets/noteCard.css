@@ -1,5 +1,5 @@
 @import url(../StyleSheets/App.css);
-#divCard {
+#notesCard {
 	min-height: 100%;
 	border-radius: 1.2rem;
 	overflow: hidden;
@@ -8,28 +8,27 @@
 	background-color: rgba(43, 52, 76, 0.56);
 	border: 0.8px solid rgba(255, 255, 255, 0.125);
 }
-.cardBody {
+.notesCardBody {
 	margin: 0.8rem 0.3rem;
 }
-h4 {
+.notesCardTitle {
 	font-family: var(--primaryFont);
 	font-size: 1.8rem;
 	font-weight: 700;
 }
-.cardNote {
+.notesCardNote {
 	font-family: var(--secondaryFont);
 	font-weight: 400;
 	font-size: 1.1rem;
 }
-.cardTag {
-	font-size: 1.1rem;
-}
-img {
+
+.astronautImg {
 	height: 21rem;
 	width: 27rem;
 }
-.cardTag {
+.notesCardTag {
 	font-family: var(--primaryFont);
+	font-size: 1.1rem;
 	font-weight: 400;
 }
 small {
@@ -39,18 +38,24 @@ small {
 
 /* Media queries */
 @media (max-width: 500px) {
-	.cardBody {
+	.notesCardBody {
 		margin: 0.6rem 0.2rem;
 	}
 }
+@media (max-width: 530px) {
+	.astronautImg {
+		height: 100%;
+		width: 100%;
+	}
+}
 @media (max-width: 400px) {
-	.cardBody {
+	.notesCardBody {
 		margin: 0.5rem 0rem;
 	}
 	h4 {
 		font-size: 1.7rem;
 	}
-	.cardNote {
+	.notesCardNote {
 		font-size: 1.05rem;
 	}
 	.fontIcon {

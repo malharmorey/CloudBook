@@ -5,29 +5,35 @@ import '../StyleSheets/noteCard.css';
 import pic from '../../src/images/pngegg.png';
 
 function NoteCard(props) {
+	// Notes-Context
 	const context = useContext(noteContext);
 	const { deleteNote } = context;
+
 	return (
 		<div className='my-3'>
 			<div
 				className='card m-auto '
-				id='divCard'
+				id='notesCard'
 				style={
 					moment(props.date).isValid()
 						? { width: '95%' }
 						: { maxWidth: 'fit-content' }
 				}
 			>
-				<div className='card-body cardBody'>
-					<h4 className='card-title' id='cardTitle'>
+				<div className='card-body notesCardBody'>
+					<h4 className='card-title notesCardTitle' id='cardTitle'>
 						{props.title}
 					</h4>
 
-					<p className='card-text cardNote'>
+					<p className='card-text notesCardNote'>
 						{props.description}
-						{moment(props.date).isValid() ? '' : <img src={pic} alt='' />}
+						{moment(props.date).isValid() ? (
+							''
+						) : (
+							<img className='astronautImg' src={pic} alt='' />
+						)}
 					</p>
-					<p className='card-text cardTag'>{props.tag}</p>
+					<p className='card-text notesCardTag'>{props.tag}</p>
 					<p className='card-text mb-3'>
 						<small
 							className={`${moment(props.date).isValid() ? '' : 'd-none'}`}

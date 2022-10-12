@@ -3,11 +3,17 @@ import { NavLink } from 'react-router-dom';
 import '../StyleSheets/navbar.css';
 import { useNavigate } from 'react-router-dom';
 import noteContext from '../context/notes/NoteContext';
+import alertContext from '../context/alerts/AlertContext';
 import cloudBookEmoji from '../images/logo512.png';
 
-const Navbar = (props) => {
-	const context = useContext(noteContext);
-	const { clearUserNotesArray, userName } = context;
+const Navbar = () => {
+	// Notes-Context
+	const Notecontext = useContext(noteContext);
+	const { clearUserNotesArray, userName } = Notecontext;
+	// Alert-Context
+	const Alertcontext = useContext(alertContext);
+	const { showAlert } = Alertcontext;
+
 	let navigate = useNavigate();
 
 	// Logging out current user and clearing user's notes array
@@ -15,7 +21,7 @@ const Navbar = (props) => {
 		localStorage.removeItem('token');
 		navigate('/login');
 		clearUserNotesArray();
-		props.showAlert('Logged out successfully', 'success');
+		showAlert('Logged out successfully', 'success');
 	};
 
 	// Collapsing navbar after selecting any NavLink
