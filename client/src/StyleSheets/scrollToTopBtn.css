@@ -1,0 +1,21 @@
+.scrollToTopBtn {
+	position: absolute;
+	bottom: -0.5rem;
+	right: -1rem;
+	height: 4.1rem;
+	width: 4.1rem;
+	z-index: 100;
+	border-radius: 40em;
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	border-style: none;
+	letter-spacing: -0.24px;
+	backdrop-filter: blur(7px) saturate(191%);
+	-webkit-backdrop-filter: blur(7px) saturate(191%);
+	background-color: rgba(43, 52, 76, 0.56);
+	border: 1px solid rgba(255, 255, 255, 0.125);
+	padding-top: 10px;
+}
