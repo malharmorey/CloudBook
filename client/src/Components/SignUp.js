@@ -20,7 +20,7 @@ const SignUp = (props) => {
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
-		const response = await fetch(`${host}/api/auth/createUser`, {
+		await fetch(`${host}/api/auth/createUser`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -30,27 +30,32 @@ const SignUp = (props) => {
 				email: credentials.email,
 				password: credentials.password,
 			}),
-		});
-		const json = await response.json();
-		if (json.success) {
-			localStorage.setItem('token', json.authToken);
-			navigate('/');
-			showAlert('Account created sccessfully!', 'success');
-		} else {
-			if (json.message === undefined) {
-				showAlert(
-					'Password must contain atleast 1 lowerCase, 1 upperCase, 1 number and 1 symbol',
-					'warning'
-				);
-			} else {
-				showAlert(`${json.message}`, 'danger');
-			}
-		}
-		setCredentials({
-			name: '',
-			email: '',
-			password: '',
-		});
+		})
+			.then(async (response) => {
+				const json = await response.json();
+				if (json.success) {
+					localStorage.setItem('token', json.authToken);
+					navigate('/');
+					showAlert('Account created sccessfully!', 'success');
+					setCredentials({
+						name: '',
+						email: '',
+						password: '',
+					});
+				} else {
+					if (json.message === undefined) {
+						showAlert(
+							'Password must contain atleast 1 lowerCase, 1 upperCase, 1 number and 1 symbol',
+							'warning'
+						);
+					} else {
+						showAlert(`${json.message}`, 'danger');
+					}
+				}
+			})
+			.catch((error) => {
+				showAlert(`${error.message}`, 'danger');
+			});
 	};
 
 	const onChange = (e) => {

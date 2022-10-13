@@ -17,7 +17,7 @@ const Login = (props) => {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		const response = await fetch(`${host}/api/auth/login`, {
+		await fetch(`${host}/api/auth/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -26,23 +26,28 @@ const Login = (props) => {
 				email: credentials.email,
 				password: credentials.password,
 			}),
-		});
-		const json = await response.json();
-		if (json.success) {
-			localStorage.setItem('token', json.authToken);
-			navigate('/');
-			showAlert('Successfully loged In', 'success');
-		} else {
-			if (json.message === undefined) {
-				showAlert('You have entered wrong credentials', 'warning');
-			} else {
-				showAlert(`${json.message}`, 'danger');
-			}
-		}
-		setCredentials({
-			email: '',
-			password: '',
-		});
+		})
+			.then(async (response) => {
+				const json = await response.json();
+				if (json.success) {
+					localStorage.setItem('token', json.authToken);
+					navigate('/');
+					showAlert('Successfully loged In', 'success');
+					setCredentials({
+						email: '',
+						password: '',
+					});
+				} else {
+					if (json.message === undefined) {
+						showAlert('You have entered wrong credentials', 'warning');
+					} else {
+						showAlert(`${json.message}`, 'danger');
+					}
+				}
+			})
+			.catch((error) => {
+				showAlert(`${error.message}`, 'danger');
+			});
 	};
 
 	const onChange = (e) => {
