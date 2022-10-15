@@ -31,7 +31,7 @@ function NewNote() {
 				data-bs-toggle='modal'
 				data-bs-target='#newModal'
 			>
-				<i class='fa-solid fa-plus'></i>
+				<i className='fa-solid fa-plus'></i>
 			</button>
 
 			{/* ///////--------------NEW-NOTE-MODAL------------////// */}

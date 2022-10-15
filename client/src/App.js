@@ -9,7 +9,7 @@ import SignUp from './Components/SignUp';
 import AlertState from './context/alerts/AlertState';
 
 function App() {
-	const host = 'http://192.168.1.3:8000';
+	const host = 'http://192.168.1.11:8000';
 	const title = 'CloudBook | Your notes on cloud';
 
 	return (

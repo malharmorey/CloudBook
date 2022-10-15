@@ -11,19 +11,9 @@ const Home = (props) => {
 		<>
 			<h2 className='pageHeading'>Your Notes 📝</h2>
 			<UpdateNotes />
-			<ScrollToTop
-				smooth
-				component={<ScrollToTopBtn />}
-				style={{
-					// boxShadow: 'none',
-					// WebkitBoxShadow: 'none',
-					// MozWindowShadow: 'none',
-					position: 'fixed !important',
-					bottom: '7rem',
-					right: '3rem',
-					background: 'transparent',
-				}}
-			/>
+			<div className='ScrollToTop'>
+				<ScrollToTop smooth component={<ScrollToTopBtn />} />
+			</div>
 			<NewNote />
 		</>
 	);
