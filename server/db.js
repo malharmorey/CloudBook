@@ -1,6 +1,6 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-const mongoURI = `mongodb+srv://Moreynium:${process.env.MONGO_PASSWORD}@moreynium.4ggiqdc.mongodb.net/CloudBook?retryWrites=true&w=majority`;
-// after using the mongo pass from .env to login to atlas shwoing Auth error.
+const mongoURI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}.4ggiqdc.mongodb.net/${process.env.MONGO_USERNAME}`;
 
 const connectToMongo = () => {
 	mongoose
