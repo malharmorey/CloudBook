@@ -3,7 +3,7 @@
  <p align="center">CloudBook is a personal note-taking📝 application to store our thoughts💬, life lessons, memories💌, stories and many more directly to the cloud☁️.
  </p>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7ca7dbff-cd21-4c52-99e7-0276d1e0de44/deploy-status)](https://app.netlify.com/sites/cloudbook-app/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ab5f2458-0a2c-4d38-b256-219be85e2b16/deploy-status)](https://app.netlify.com/projects/cloud-book/deploys)
 
 ### Why CloudBook?
 
