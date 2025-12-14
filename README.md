@@ -14,7 +14,7 @@
 
 ### Creating your CloudBook account
 
-1. Launch🚀 the web app at [cloudbook-app.netlify.app](https://cloudbook-app.netlify.app/).
+1. Launch🚀 the web app at [cloudbook-app.netlify.app](https://cloud-book.netlify.app/).
 2. Click Sign Up👤 to create your CloudBook account.
 3. Now access your Notes on any of your favourite device.
    - Mac
