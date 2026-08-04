@@ -55,7 +55,9 @@ function NotesList({ searchQuery = '' }) {
 							No notes match your search.
 						</p>
 					) : (
-						<NoteCard title={'Nothing in Here, but you and me'} date={''} />
+						<div className='w-full'>
+							<NoteCard title={'Nothing in Here, but you and me'} date={''} />
+						</div>
 					)
 				) : (
 					notesArray.map((note) => (
